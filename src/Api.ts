@@ -1,6 +1,22 @@
 import axios from "axios";
 
-export async function getAllComicStrips() {
+export interface IComic {
+  data: {
+    alt: string;
+    day: string;
+    img: string;
+    link: string;
+    month: string;
+    news: string;
+    num: number;
+    safe_title: string;
+    title: string;
+    transcript: string;
+    year: string;
+  };
+}
+
+export async function getAllComicStrips(): Promise<IComic[]> {
   const { data } = await axios.get("https://xkcd.com/info.0.json");
   const lastStripNo = data.num + 1;
 
@@ -10,9 +26,7 @@ export async function getAllComicStrips() {
   for (let i = 1; i < lastStripNo; i++) {
     try {
       promises.push(
-        await axios.get(`https://xkcd.com/${i}/info.0.json`, {
-          headers: { "Access-Control-Allow-Origin": "*" },
-        })
+        await axios.get<IComic>(`https://xkcd.com/${i}/info.0.json`)
       );
     } catch (error) {
       console.warn(error);
@@ -27,6 +41,6 @@ export async function getAllComicStrips() {
       )
       .map((promise: any) => (!error ? promise.value : promise.reason));
 
-  const fulfilled = resultFilter(result); // all fulfilled results
+  const fulfilled = resultFilter(result) as IComic[]; // all fulfilled results
   return fulfilled;
 }

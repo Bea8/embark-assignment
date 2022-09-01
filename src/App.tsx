@@ -1,12 +1,12 @@
 import "./App.scss";
-import Pagination from "@mui/material/Pagination";
-import { getAllComicStrips } from "./Api";
+import { getAllComicStrips, IComic } from "./Api";
 import { useEffect, useState } from "react";
 import { Comic } from "./Components/Comic";
 import { CircularProgress } from "@mui/material";
+import { ComicsPagination } from "./Components/ComicsPagination";
 
 function App() {
-  const [comics, setComics] = useState([]);
+  const [comics, setComics] = useState<IComic[]>([]);
   const [page, setPage] = useState(1);
   const [comicsPerPage] = useState(100);
 
@@ -31,10 +31,10 @@ function App() {
     <div className="App">
       <header>XKCD Comic Strips</header>
       <main>
-        <div className="strip-mosaic">
+        <div className="comic__grid">
           {currentComics.length ? (
-            currentComics.map((currentComic: any) => (
-              <Comic key={currentComic?.data.num} comic={currentComic} />
+            currentComics.map((currentComic: IComic) => (
+              <Comic key={currentComic.data.num} comic={currentComic} />
             ))
           ) : (
             <CircularProgress />
@@ -42,8 +42,7 @@ function App() {
         </div>
       </main>
       {currentComics.length ? (
-        <Pagination
-          className="pagination"
+        <ComicsPagination
           count={Math.ceil(comics.length / 100)}
           page={page}
           onChange={handleChange}

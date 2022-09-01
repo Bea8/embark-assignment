@@ -1,8 +1,9 @@
 import { Modal } from "@mui/material";
 import { useState } from "react";
+import { IComic } from "../Api";
 
 interface IComicProps {
-  comic: any;
+  comic: IComic;
 }
 
 export const Comic = ({ comic }: IComicProps) => {
@@ -13,10 +14,9 @@ export const Comic = ({ comic }: IComicProps) => {
   return (
     <>
       <img
-        className="strip"
-        src={comic?.data.img}
+        className="comic"
+        src={comic.data?.img}
         alt="comic_strip"
-        key={comic?.data.num}
         onClick={handleOpen}
       />
 
@@ -25,20 +25,20 @@ export const Comic = ({ comic }: IComicProps) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableAutoFocus={true}
       >
-        <div className="strip__modal">
+        <div className="comic__modal">
           <img
-            className="strip__modal__large-strip"
-            src={comic?.data.img}
+            className="comic__modal_large"
+            src={comic.data?.img}
             alt="large-comic-strip"
-            key={comic?.data.num}
             onClick={handleOpen}
           />
           <h4>
-            {comic?.data.month}/{comic?.data.year}
+            {comic.data?.month}/{comic.data?.year}
           </h4>
-          <h2>{comic?.data.title}</h2>
-          <h3>{comic?.data.alt}</h3>
+          <h2>{comic.data?.title}</h2>
+          <h3>{comic.data?.alt}</h3>
         </div>
       </Modal>
     </>

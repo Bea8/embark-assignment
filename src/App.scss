@@ -26,7 +26,7 @@ main {
   overflow: scroll;
 }
 
-.strip-mosaic {
+.comic__grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -34,7 +34,7 @@ main {
   padding: 1rem;
 }
 
-.strip {
+.comic {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,7 +60,7 @@ main {
     max-width: min-content;
     border-radius: 15px;
     margin: 50px auto;
-    &__large-strip {
+    &__large {
       margin: 0 auto;
     }
   }
