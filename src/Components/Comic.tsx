@@ -14,7 +14,7 @@ export const Comic = ({ comic }: IComicProps) => {
   return (
     <>
       <img
-        className="comic"
+        className="comic__grid__item"
         src={comic.data?.img}
         alt="comic_strip"
         onClick={handleOpen}
@@ -27,9 +27,9 @@ export const Comic = ({ comic }: IComicProps) => {
         aria-describedby="modal-modal-description"
         disableAutoFocus={true}
       >
-        <div className="comic__modal">
+        <div className="comic__grid__item__modal">
           <img
-            className="comic__modal_large"
+            className="comic__grid__item__modal_large"
             src={comic.data?.img}
             alt="large-comic-strip"
             onClick={handleOpen}

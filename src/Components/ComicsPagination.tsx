@@ -13,7 +13,7 @@ export const ComicsPagination = ({
 }: IPaginationProps) => {
   return (
     <Pagination
-      className="pagination"
+      className="comic__pagination"
       count={count}
       page={page}
       onChange={onChange}
