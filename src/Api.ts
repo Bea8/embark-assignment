@@ -18,7 +18,7 @@ export interface IComic {
 
 export async function getAllComicStrips(): Promise<IComic[]> {
   const { data } = await axios.get("https://xkcd.com/info.0.json");
-  const lastStripNo = data.num - 2400;
+  const lastStripNo = data.num;
 
   let result;
   let promises = [];
